@@ -20,7 +20,6 @@ body {
   font-size: 2em;
   background: blue;
   color: white;
-  cursor: pointer;
 }
 
 button {
@@ -30,9 +29,11 @@ button {
   width: fit-content;
   background: white;
   padding: 10px;
+  cursor: pointer;
 }
 
 button[disabled] {
+  cursor: default;
   box-shadow: none;
   color: gray;
 }
