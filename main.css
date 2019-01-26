@@ -1,0 +1,48 @@
+html {
+  background: whitesmoke;
+  height: 100%;
+}
+
+body {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 450px));
+  justify-content: center;
+  align-content: center;
+  margin: 0px;
+}
+
+*:focus {
+  outline: none;
+}
+
+#theButton {
+  padding: 20px;
+  font-size: 2em;
+  background: blue;
+  color: white;
+  cursor: pointer;
+}
+
+button {
+  text-transform: uppercase;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 10px;
+  width: fit-content;
+  background: white;
+  padding: 10px;
+}
+
+button[disabled] {
+  box-shadow: none;
+  color: gray;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+main {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
