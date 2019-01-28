@@ -1,3 +1,8 @@
+let initState = JSON.parse(localStorage.getItem("state")) || {
+  counter: 0,
+  autoClickers: 0
+};
+
 const clickerInterval = 5000;
 let clickerCost = 100;
 
@@ -8,7 +13,7 @@ const autoEl = document.querySelector("#clickerCount");
 const autoClickerBtn = document.querySelector("#autoClicker");
 const clickerCostEl = document.querySelector("#clickerCost");
 
-function counter(state = 0, action) {
+function counter(state = initState.counter, action) {
   switch (action.type) {
     case "INC":
       return state + action.value;
@@ -21,7 +26,7 @@ function counter(state = 0, action) {
   }
 }
 
-function autoClickers(state = 0, action) {
+function autoClickers(state = initState.autoClickers, action) {
   switch (action.type) {
     case "ADD_CLICKER":
       if ((state + 1) % 5 === 0) clickerCost += Math.round(clickerCost * 0.2);
@@ -48,6 +53,8 @@ function render() {
     autoTimer = setInterval(() => {
       store.dispatch({ type: "INC", value: 1 });
     }, clickerInterval / autoClickers);
+
+  localStorage.setItem("state", JSON.stringify(store.getState()));
 }
 
 render();
