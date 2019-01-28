@@ -1,6 +1,7 @@
 let initState = JSON.parse(localStorage.getItem("state")) || {
   counter: 0,
-  autoClickers: 0
+  autoClickers: 0,
+  worth: 0
 };
 
 const clickerInterval = 5000;
@@ -29,7 +30,10 @@ function counter(state = initState.counter, action) {
   }
 }
 
-function worth(state = calculateNetWorth(initState) || 0, action) {
+function worth(
+  state = initState.worth || calculateNetWorth(initState),
+  action
+) {
   switch (action.type) {
     case "INC":
       return state + action.value;
