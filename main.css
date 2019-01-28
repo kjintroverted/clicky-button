@@ -5,6 +5,8 @@ html {
 
 body {
   margin: 0px;
+  display: grid;
+  grid-template-rows: 50px 1fr 100px;
 }
 
 *:focus {
@@ -27,9 +29,18 @@ button[disabled] {
   color: gray;
 }
 
-.comp {
-  display: block;
-  margin-bottom: 20px;
+header {
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-transform: uppercase;
+  font-style: italic;
+}
+
+header p {
+  margin: 2px 10px;
 }
 
 main {
@@ -38,9 +49,27 @@ main {
   justify-content: center;
 }
 
+div {
+  padding: 10px;
+}
+
 #theButton {
   padding: 20px;
   font-size: 2em;
   background: blue;
   color: white;
+}
+
+@media screen and (max-width: 450px) {
+  #theButton {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    left: 0px;
+  }
+}
+
+.comp {
+  display: block;
+  margin-bottom: 20px;
 }
