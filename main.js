@@ -1,5 +1,4 @@
 let initState = JSON.parse(localStorage.getItem("state")) || {
-  worth: 0,
   counter: 0,
   autoClickers: 0
 };
@@ -30,7 +29,7 @@ function counter(state = initState.counter, action) {
   }
 }
 
-function worth(state = initState.worth || 0, action) {
+function worth(state = calculateNetWorth(initState) || 0, action) {
   switch (action.type) {
     case "INC":
       return state + action.value;
@@ -57,12 +56,10 @@ const store = Redux.createStore(
 
 let autoTimer;
 function render() {
-  const { counter, autoClickers, worth } = store.getState();
+  const state = store.getState();
+  const { counter, autoClickers, worth } = state;
 
   counterEl.innerHTML = counter;
-
-  netWorth.innerHTML = worth;
-
   autoEl.innerHTML = autoClickers;
   clickerCostEl.innerHTML = clickerCost;
   autoClickerBtn.disabled = counter < clickerCost;
@@ -72,7 +69,9 @@ function render() {
       store.dispatch({ type: "INC", value: 1 });
     }, clickerInterval / autoClickers);
 
-  localStorage.setItem("state", JSON.stringify(store.getState()));
+  localStorage.setItem("state", JSON.stringify(state));
+
+  netWorth.innerHTML = worth;
 }
 
 render();
@@ -87,3 +86,15 @@ theButton.addEventListener("click", () =>
 autoClickerBtn.addEventListener("click", () => {
   store.dispatch({ type: "ADD_CLICKER" });
 });
+
+// HELPER FUNCTIONS
+
+function calculateNetWorth(state) {
+  const { counter, autoClickers } = state;
+  if (!counter || !autoClickers) return 0;
+  let clicks = counter;
+  for (let i = 1; i <= autoClickers; i++) {
+    clicks += 100 + 100 * (Math.floor(i / 5) * 0.2);
+  }
+  return clicks;
+}
