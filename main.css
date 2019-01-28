@@ -4,21 +4,11 @@ html {
 }
 
 body {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 450px));
-  justify-content: center;
   margin: 0px;
 }
 
 *:focus {
   outline: none;
-}
-
-#theButton {
-  padding: 20px;
-  font-size: 2em;
-  background: blue;
-  color: white;
 }
 
 button {
@@ -37,12 +27,20 @@ button[disabled] {
   color: gray;
 }
 
-section {
+.comp {
+  display: block;
   margin-bottom: 20px;
 }
 
 main {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 450px));
+  justify-content: center;
+}
+
+#theButton {
+  padding: 20px;
+  font-size: 2em;
+  background: blue;
+  color: white;
 }
